@@ -17,4 +17,8 @@ export class ProdutosService {
   async create(produto: Produto): Promise<Produto> {
     return this.produtoRepository.save(produto);
   }
+  async getProdutoById(produto_id: number): Promise<Produto> {
+    // Corrigir aqui: usar findOneBy em vez de findOne para buscar pelo ID
+    return await this.produtoRepository.findOneBy({ produto_id });
+  }
 }

@@ -14,11 +14,17 @@ export class Produto {
   @Column({ type: 'money' })
   preco_produto: number;
 
-  @Column({ length: 100 })
-  categoria_produto : string;
+  @Column({ length: 100})
+  produto_categoria : string;
 
-  @Column({ type: 'text', nullable: false }) // Usando o tipo 'text' para o caminho da imagem
-  imagem: string;
+  @Column("text", { array: true})
+  produto_tamanhos : string[];
+
+  @Column("text", { array: true})
+  produto_cores : string[];
+
+  @Column({length: 255}) // Usando o tipo 'text' para o caminho da imagem
+  produto_imagens: string;
   
 }
 

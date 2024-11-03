@@ -21,9 +21,14 @@ export class ProdutosController {
 
   @Get('imagens/:imagemPath')
   findImagem(@Param('imagemPath') imagemPath: string, @Res() res: Response) {
-      const imagePath = join(__dirname, '..', 'Produtos', 'public', 'imagens', imagemPath);
+      const imagePath = join(__dirname, '..', 'public', 'imagens', imagemPath);
       console.log("Caminho da imagem:", imagePath); // Debug
-      return res.sendFile(imagePath);
+      return res.sendFile(imagePath, (err) => {
+        if (err) {
+          console.error("Erro ao enviar o arquivo:", err);
+          return res.status(404).send('Imagem não encontrada');
+        }
+      });
   }
   
 }
